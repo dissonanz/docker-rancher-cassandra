@@ -27,12 +27,10 @@ if [ "$1" = 'cassandra' ]; then
 
 			# TODO can we somehow check if container is already running correctly?
 
-			if [ "$container_ip" != "$PRIMARY_IP" ]; then
-				if [ -z "$CASSANDRA_SEEDS" ]; then
-					CASSANDRA_SEEDS="$container_ip"
-				else
-					CASSANDRA_SEEDS="$CASSANDRA_SEEDS,$container_ip"
-				fi
+			if [ -z "$CASSANDRA_SEEDS" ]; then
+				CASSANDRA_SEEDS="$container_ip"
+			else
+				CASSANDRA_SEEDS="$CASSANDRA_SEEDS,$container_ip"
 			fi
 		done
 	else
